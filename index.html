@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Portfolio Website of Munazza Sadaf - Computer Science Engineering Student specializing in AI, ML, Web Development, and Cybersecurity.">
+    <title>Munazza Sadaf | Computer Science Student</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary-color: #06b6d4;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            --bg-light: #f8fafc;
+            --surface-light: #ffffff;
+            --text-light: #0f172a;
+            --text-muted-light: #64748b;
+            --border-light: #e2e8f0;
+
+            --bg-dark: #0f172a;
+            --surface-dark: #1e293b;
+            --text-dark: #f8fafc;
+            --text-muted-dark: #94a3b8;
+            --border-dark: #334155;
+
+            --glass-bg-dark: rgba(30, 41, 59, 0.75);
+            --glass-bg-light: rgba(255, 255, 255, 0.85);
+        }
+
+        [data-bs-theme="dark"] {
+            --bg-body: var(--bg-dark);
+            --surface-body: var(--surface-dark);
+            --text-body: var(--text-dark);
+            --text-sub: var(--text-muted-dark);
+            --border-color: var(--border-dark);
+            --glass-bg: var(--glass-bg-dark);
+            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        [data-bs-theme="light"] {
+            --bg-body: var(--bg-light);
+            --surface-body: var(--surface-light);
+            --text-body: var(--text-light);
+            --text-sub: var(--text-muted-light);
+            --border-color: var(--border-light);
+            --glass-bg: var(--glass-bg-light);
+            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-primary {
+            background: var(--accent-gradient) !important;
+        }
+
+        .glass-nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card {
+            background: var(--surface-body);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--text-sub);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color);
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+
+        .hero-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            margin: 0 auto;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: var(--primary-color);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--bg-body);
+        }
+
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: var(--border-color);
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--accent-gradient);
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.1, 0.5, 0.5, 1);
+        }
+
+        .btn-filter {
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            border-radius: 2rem;
+            padding: 0.4rem 1.2rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-filter.active, .btn-filter:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .project-card {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.4s ease;
+        }
+
+        .project-card.hide {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .theme-toggle-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: var(--surface-body);
+            color: var(--text-body);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: rotate(15deg) scale(1.05);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50%;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--accent-gradient);
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg glass-nav py-3" aria-label="Main Navigation">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" href="#home">
+                    <span class="p-2 rounded-3 bg-gradient-primary text-white d-inline-flex justify-content-center align-items-center" style="width: 38px; height: 38px;">MS</span>
+                    <span class="text-body">Munazza<span class="text-gradient">.Sadaf</span></span>
+                </a>
+
+                <div class="d-flex align-items-center gap-2 order-lg-last ms-2">
+                    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light and dark mode">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="py-5 min-vh-100 d-flex align-items-center position-relative">
+            <div class="container py-4">
+                <div class="row align-items-center gy-5">
+                    <div class="col-lg-7 order-2 order-lg-1">
+                        <div class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-3">
+                            <i class="fa-solid fa-location-dot me-1"></i> Hyderabad, India
+                        </div>
+                        <h1 class="display-3 fw-bold mb-3">
+                            Hi, I'm <span class="text-gradient">Munazza Sadaf</span>
+                        </h1>
+                        <h2 class="h3 mb-4 text-sub">
+                            I am a <span class="typing-text text-primary" id="typingText"></span>
+                        </h2>
+                        <p class="lead text-sub mb-4 pe-lg-4">
+                            Building ideas into intelligent solutions. Computer Science Engineering student passionate about exploring Artificial Intelligence, Machine Learning, Web Development, and Cybersecurity.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 mb-4">
+                            <a href="#projects" class="btn btn-primary bg-gradient-primary border-0 btn-lg rounded-pill px-4 py-2">
+                                View Projects <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </a>
+                            <a href="#contact" class="btn btn-outline-secondary btn-lg rounded-pill px-4 py-2">
+                                Get In Touch
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 pt-2">
+                            <span class="text-sub small fw-semibold">CONNECT:</span>
+                            <a href="https://github.com/munazzasadaf63" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary rounded-circle" aria-label="GitHub Profile" style="width: 40px; height: 40px; display: grid; place-items: center;">
+                                <i class="fa-brands fa-github fs-5"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/munazza-sadaf-593837352/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary rounded-circle" aria-label="LinkedIn Profile" style="width: 40px; height: 40px; display: grid; place-items: center;">
+                                <i class="fa-brands fa-linkedin-in fs-5"></i>
+                            </a>
+                            <a href="mailto:munazzasadaf786@gmail.com" class="btn btn-sm btn-outline-secondary rounded-circle" aria-label="Email" style="width: 40px; height: 40px; display: grid; place-items: center;">
+                                <i class="fa-solid fa-envelope fs-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 order-1 order-lg-2 text-center">
+                        <div class="hero-avatar">
+                            MS
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-5 bg-subtle">
+            <div class="container py-4">
+                <h2 class="h2 section-title fw-bold">About Me</h2>
+                <div class="row gy-4 align-items-center">
+                    <div class="col-lg-6">
+                        <p class="fs-5 text-sub">
+                            I’m a Computer Science Engineering student passionate about exploring AI, software development, and cybersecurity.
+                        </p>
+                        <p class="text-sub mb-4">
+                            I enjoy turning ideas into practical projects, learning through hands-on experience, and constantly experimenting with new technologies to solve real-world problems.
+                        </p>
+                        
+                        <div class="glass-card p-4">
+                            <h3 class="h5 fw-bold mb-3"><i class="fa-solid fa-star text-warning me-2"></i> Key Highlights</h3>
+                            <ul class="list-unstyled vstack gap-2 mb-0 text-sub">
+                                <li class="d-flex align-items-center gap-2">
+                                    <span class="fs-5">🤖</span>
+                                    <span>Interested in AI, Machine Learning & LLMs</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-2">
+                                    <span class="fs-5">💻</span>
+                                    <span>Hands-on experience through software development internships</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-2">
+                                    <span class="fs-5">🔐</span>
+                                    <span>Exploring Cybersecurity & LLM security</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-2">
+                                    <span class="fs-5">🚀</span>
+                                    <span>Passionate about learning, building, and solving problems</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="p-4 border rounded-3 glass-card text-center">
+                                    <i class="fa-solid fa-graduation-cap fs-1 text-primary mb-2"></i>
+                                    <div class="text-primary fw-bold fs-3">8.7 CGPA</div>
+                                    <div class="text-sub small">Academic Excellence</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="p-4 border rounded-3 glass-card text-center">
+                                    <i class="fa-solid fa-laptop-code fs-1 text-primary mb-2"></i>
+                                    <div class="text-primary fw-bold fs-3">2 Internships</div>
+                                    <div class="text-sub small">Hands-on Work Experience</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="p-4 border rounded-3 glass-card text-center">
+                                    <i class="fa-solid fa-brain fs-1 text-primary mb-2"></i>
+                                    <div class="text-primary fw-bold fs-3">AI & Security</div>
+                                    <div class="text-sub small">Specialized Focus</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="p-4 border rounded-3 glass-card text-center">
+                                    <i class="fa-solid fa-code-branch fs-1 text-primary mb-2"></i>
+                                    <div class="text-primary fw-bold fs-3">2023 - 2027</div>
+                                    <div class="text-sub small">B.Tech Degree Duration</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="py-5">
+            <div class="container py-4">
+                <h2 class="h2 section-title fw-bold">Education & Academic Background</h2>
+                <div class="row g-4">
+                    <div class="col-lg-12">
+                        <div class="glass-card p-4">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                                <div>
+                                    <h3 class="h4 mb-1 fw-bold text-primary">B.Tech in Computer Science and Engineering</h3>
+                                    <div class="fs-5 text-sub fw-semibold">Stanley College of Engineering and Technology for Women</div>
+                                </div>
+                                <div class="text-end">
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill fs-6 px-3 py-2">2023 – 2027</span>
+                                    <div class="fw-bold text-success mt-1">CGPA: 8.7</div>
+                                </div>
+                            </div>
+                            <hr class="my-3">
+                            <h4 class="h6 fw-bold mb-3"><i class="fa-solid fa-book-open text-primary me-2"></i> Key Coursework & Focus Areas:</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge border text-body p-2">Data Structures & Algorithms</span>
+                                <span class="badge border text-body p-2">Object-Oriented Programming</span>
+                                <span class="badge border text-body p-2">Database Management Systems</span>
+                                <span class="badge border text-body p-2">Web Technologies</span>
+                                <span class="badge border text-body p-2">Software Engineering</span>
+                                <span class="badge border text-body p-2">Computer Networks</span>
+                                <span class="badge border text-body p-2">Cybersecurity & Cryptography</span>
+                                <span class="badge border text-body p-2">Artificial Intelligence & Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-5 bg-subtle">
+            <div class="container py-4">
+                <h2 class="h2 section-title fw-bold">Technical Skills</h2>
+                <div class="row g-4">
+                    <!-- Languages -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-code text-danger fs-2"></i>
+                                <h3 class="h5 mb-0 fw-bold">Languages</h3>
+                            </div>
+                            <div class="vstack gap-3">
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>Python</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="90%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>Java</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="85%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>C / C++</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="80%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>JavaScript</span>
+                                        <span>82%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="82%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frontend -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-brands fa-html5 text-primary fs-2"></i>
+                                <h3 class="h5 mb-0 fw-bold">Frontend</h3>
+                            </div>
+                            <div class="vstack gap-3">
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>HTML5 & CSS3</span>
+                                        <span>92%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="92%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>Bootstrap 5</span>
+                                        <span>88%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="88%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>React</span>
+                                        <span>78%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="78%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend & DB -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-server text-success fs-2"></i>
+                                <h3 class="h5 mb-0 fw-bold">Backend & DB</h3>
+                            </div>
+                            <div class="vstack gap-3">
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>FastAPI / Flask</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="85%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>MySQL</span>
+                                        <span>82%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="82%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between small mb-1 fw-semibold">
+                                        <span>SQLite</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="skill-bar"><div class="skill-progress" data-target="85%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <i class="fa-solid fa-wrench text-warning fs-2"></i>
+                                <h3 class="h5 mb-0 fw-bold">Tools & Tech</h3>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2 pt-2">
+                                <span class="badge bg-primary-subtle text-primary p-2">Git</span>
+                                <span class="badge bg-primary-subtle text-primary p-2">GitHub</span>
+                                <span class="badge bg-primary-subtle text-primary p-2">VS Code</span>
+                                <span class="badge bg-primary-subtle text-primary p-2">Google Colab</span>
+                                <span class="badge bg-primary-subtle text-primary p-2">REST APIs</span>
+                                <span class="badge bg-primary-subtle text-primary p-2">Scikit-learn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="py-5">
+            <div class="container py-4">
+                <h2 class="h2 section-title fw-bold">Work / Internship Experience</h2>
+                <div class="timeline">
+                    <!-- Internship 1 -->
+                    <div class="timeline-item">
+                        <div class="glass-card p-4">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                                <div>
+                                    <h3 class="h5 mb-0 fw-bold">Software Development Intern</h3>
+                                    <div class="text-primary fw-semibold">Purview Technologies</div>
+                                </div>
+                                <span class="badge bg-primary-subtle text-primary rounded-pill">April 2026 - June 2026</span>
+                            </div>
+                            <ul class="small text-sub ps-3 mb-0 mt-3">
+                                <li class="mb-1">Contributed to the development of a Patient Post-Discharge AI Agent.</li>
+                                <li class="mb-1">Worked on backend development using Python/FastAPI.</li>
+                                <li class="mb-1">Worked with APIs, database integration, and AI workflow components.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Internship 2 -->
+                    <div class="timeline-item">
+                        <div class="glass-card p-4">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                                <div>
+                                    <h3 class="h5 mb-0 fw-bold">Python Development Intern</h3>
+                                    <div class="text-primary fw-semibold">Cognifyz Technologies</div>
+                                </div>
+                                <span class="badge bg-secondary-subtle text-secondary rounded-pill">April 2025 - August 2025</span>
+                            </div>
+                            <ul class="small text-sub ps-3 mb-0 mt-3">
+                                <li class="mb-1">Worked on Python programming and problem-solving tasks.</li>
+                                <li class="mb-1">Developed programs involving string manipulation, validation, algorithms, file handling, and automation.</li>
+                                <li class="mb-1">Completed Level 1 and Level 2 internship tasks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-5 bg-subtle">
+            <div class="container py-4">
+                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+                    <div>
+                        <h2 class="h2 section-title fw-bold mb-0">Projects</h2>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2" role="group" aria-label="Project filter categories">
+                        <button type="button" class="btn btn-filter active" data-filter="all">All</button>
+                        <button type="button" class="btn btn-filter" data-filter="ai">AI & ML</button>
+                        <button type="button" class="btn btn-filter" data-filter="healthcare">Healthcare</button>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="projectsContainer">
+                    <!-- Project Card -->
+                    <div class="col-md-6 col-lg-6 project-card" data-category="ai healthcare">
+                        <div class="glass-card h-100 d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="badge bg-primary-subtle text-primary">AI & ML / Healthcare</span>
+                                <i class="fa-solid fa-brain fs-3 text-primary"></i>
+                            </div>
+                            <h3 class="h4 fw-bold mb-2">AI Tool for Early-Stage Dementia Detection</h3>
+                            <p class="text-sub mb-4 flex-grow-1">
+                                A web-based AI screening system designed to identify early cognitive risk through tests such as memory, animal fluency, and reaction time, generating a risk assessment for further evaluation.
+                            </p>
+                            <div class="mb-3 d-flex flex-wrap gap-1">
+                                <span class="badge border text-sub">Python</span>
+                                <span class="badge border text-sub">Flask</span>
+                                <span class="badge border text-sub">Angular</span>
+                                <span class="badge border text-sub">SQLite</span>
+                                <span class="badge border text-sub">Scikit-learn</span>
+                                <span class="badge border text-sub">Random Forest</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-primary w-100 view-project-btn" data-project-id="1">
+                                    View Details <i class="fa-solid fa-circle-info ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-5">
+            <div class="container py-4">
+                <h2 class="h2 section-title fw-bold">Get In Touch</h2>
+                <div class="row g-4">
+                    <!-- Contact Info -->
+                    <div class="col-lg-5">
+                        <div class="glass-card p-4 h-100">
+                            <h3 class="h4 fw-bold mb-4">Contact Information</h3>
+                            <p class="text-sub mb-4">
+                                Feel free to reach out for internship opportunities, project collaborations, or tech discussions!
+                            </p>
+
+                            <div class="vstack gap-3 mb-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-3 bg-primary-subtle text-primary rounded-3">
+                                        <i class="fa-solid fa-envelope fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-sub d-block">EMAIL</small>
+                                        <a href="mailto:munazzasadaf786@gmail.com" class="fw-semibold text-body text-decoration-none">munazzasadaf786@gmail.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-3 bg-primary-subtle text-primary rounded-3">
+                                        <i class="fa-solid fa-location-dot fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-sub d-block">LOCATION</small>
+                                        <span class="fw-semibold">Hyderabad, India</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-3 bg-primary-subtle text-primary rounded-3">
+                                        <i class="fa-brands fa-linkedin-in fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-sub d-block">LINKEDIN</small>
+                                        <a href="https://www.linkedin.com/in/munazza-sadaf-593837352/" target="_blank" rel="noopener noreferrer" class="fw-semibold text-body text-decoration-none">Munazza Sadaf</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="col-lg-7">
+                        <div class="glass-card p-4">
+                            <h3 class="h4 fw-bold mb-4">Send Me a Message</h3>
+
+                            <form id="contactForm" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="fullName" class="form-label small fw-semibold">Full Name *</label>
+                                        <input type="text" class="form-control" id="fullName" placeholder="Your Name" required>
+                                        <div class="invalid-feedback">Please enter your name.</div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="emailAddress" class="form-label small fw-semibold">Email Address *</label>
+                                        <input type="email" class="form-control" id="emailAddress" placeholder="yourname@example.com" required>
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label small fw-semibold">Subject *</label>
+                                        <input type="text" class="form-control" id="subject" placeholder="Project Inquiry / Connect" required>
+                                        <div class="invalid-feedback">Please provide a subject.</div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="message" class="form-label small fw-semibold">Message *</label>
+                                        <textarea class="form-control" id="message" rows="5" placeholder="Your message here..." required></textarea>
+                                        <div class="invalid-feedback">Please enter a message (at least 10 characters).</div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary bg-gradient-primary border-0 btn-lg w-100 rounded-3">
+                                            <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-4 border-top">
+        <div class="container text-center">
+            <p class="small text-sub mb-0">
+                &copy; <span id="currentYear"></span> Munazza Sadaf. Built with HTML5, Bootstrap 5 & JavaScript.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card border-0">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold" id="projectModalTitle">Project Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3" id="modalProjectTags"></div>
+                    <p id="modalProjectDesc" class="text-sub fs-5"></p>
+                    <h6 class="fw-bold mt-4">Key System Components:</h6>
+                    <ul id="modalProjectFeatures" class="small text-sub ps-3"></ul>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast Alert -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1100;">
+        <div id="contactToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fa-solid fa-circle-check me-2"></i> Thank you! Your message has been sent successfully.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back To Top Button -->
+    <button id="backToTop" class="btn btn-primary rounded-circle p-0" style="width: 45px; height: 45px;" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set Copyright Year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // 1. THEME SWITCHER
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlElement = document.documentElement;
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+
+            function setTheme(theme) {
+                htmlElement.setAttribute('data-bs-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (theme === 'dark') {
+                    themeIcon.className = 'fa-solid fa-sun text-warning';
+                } else {
+                    themeIcon.className = 'fa-solid fa-moon text-dark';
+                }
+            }
+
+            // 2. HERO TYPING EFFECT
+            const typingTextElement = document.getElementById('typingText');
+            const phrases = ['Computer Science Student.', 'AI & ML Enthusiast.', 'Backend & Software Developer.', 'Cybersecurity Explorer.'];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeEffect() {
+                const currentPhrase = phrases[phraseIndex];
+
+                if (isDeleting) {
+                    typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typingSpeed = isDeleting ? 50 : 100;
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    typingSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    typingSpeed = 500;
+                }
+
+                setTimeout(typeEffect, typingSpeed);
+            }
+            typeEffect();
+
+            // 3. PROJECT DATA & MODAL INJECTION
+            const projectsData = {
+                "1": {
+                    title: "AI Tool for Early-Stage Dementia Detection",
+                    desc: "A web-based AI screening system designed to identify early cognitive risk through tests such as memory, animal fluency, and reaction time, generating a risk assessment for further evaluation.",
+                    tags: ["Python", "Flask", "Angular", "SQLite", "Scikit-learn", "Random Forest"],
+                    features: [
+                        "Interactive cognitive risk assessment tests (Memory, Animal Fluency, Reaction Time).",
+                        "Scikit-Learn Machine Learning integration using Random Forest classifier.",
+                        "Flask RESTful API backend communicating with Angular frontend.",
+                        "SQLite database integration for user test session logging."
+                    ]
+                }
+            };
+
+            const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+            document.querySelectorAll('.view-project-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-project-id');
+                    const data = projectsData[id];
+                    if (data) {
+                        document.getElementById('projectModalTitle').textContent = data.title;
+                        document.getElementById('modalProjectDesc').textContent = data.desc;
+                        
+                        const tagsContainer = document.getElementById('modalProjectTags');
+                        tagsContainer.innerHTML = data.tags.map(t => `<span class="badge bg-primary-subtle text-primary me-1">${t}</span>`).join('');
+
+                        const featuresList = document.getElementById('modalProjectFeatures');
+                        featuresList.innerHTML = data.features.map(f => `<li class="mb-1">${f}</li>`).join('');
+
+                        projectModal.show();
+                    }
+                });
+            });
+
+            // 4. PROJECT CATEGORY FILTERING
+            const filterButtons = document.querySelectorAll('.btn-filter');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category.includes(filterValue)) {
+                            card.classList.remove('hide');
+                        } else {
+                            card.classList.add('hide');
+                        }
+                    });
+                });
+            });
+
+            // 5. ANIMATED SKILL BARS ON SCROLL
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetWidth = entry.target.getAttribute('data-target');
+                        entry.target.style.width = targetWidth;
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            skillBars.forEach(bar => skillObserver.observe(bar));
+
+            // 6. ACTIVE NAV LINK HIGHLIGHT & BACK TO TOP
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 7. CONTACT FORM VALIDATION
+            const contactForm = document.getElementById('contactForm');
+            const contactToast = new bootstrap.Toast(document.getElementById('contactToast'));
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                const nameInput = document.getElementById('fullName');
+                const emailInput = document.getElementById('emailAddress');
+                const subjectInput = document.getElementById('subject');
+                const messageInput = document.getElementById('message');
+
+                if (nameInput.value.trim().length < 2) {
+                    nameInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('is-invalid');
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    emailInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    emailInput.classList.remove('is-invalid');
+                }
+
+                if (subjectInput.value.trim() === '') {
+                    subjectInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    subjectInput.classList.remove('is-invalid');
+                }
+
+                if (messageInput.value.trim().length < 10) {
+                    messageInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    messageInput.classList.remove('is-invalid');
+                }
+
+                if (isValid) {
+                    contactToast.show();
+                    contactForm.reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
